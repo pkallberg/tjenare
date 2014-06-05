@@ -78,6 +78,16 @@ Gitlab::Application.configure do
 	# #   location: '/usr/sbin/sendmail',
 	# #   arguments: '-i -t'
 	# # }
+
+	config.action_mailer.sendmail_settings = {
+		:address => ENV['SMTP_ADDRESS'],
+		:port => ENV['SMTP_PORT'],
+		:domain => ENV['SMTP_DOMAIN'],
+		:user_name => ENV['SMTP_USERNAME'],
+		:password => ENV['SMTP_PASSWORD'],
+		:authentication => "plain",
+		:enable_starttls_auto => true }
+
 	config.action_mailer.perform_deliveries = true
 	config.action_mailer.raise_delivery_errors = true
 
