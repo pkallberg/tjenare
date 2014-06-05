@@ -72,22 +72,16 @@ Gitlab::Application.configure do
 	# with SQLite, MySQL, and PostgreSQL)
 	# config.active_record.auto_explain_threshold_in_seconds = 0.5
 
-	config.action_mailer.delivery_method = :sendmail
-	# Defaults to:
-	# # config.action_mailer.sendmail_settings = {
-	# #   location: '/usr/sbin/sendmail',
-	# #   arguments: '-i -t'
-	# # }
-
-	config.action_mailer.sendmail_settings = {
-		:address => ENV['SMTP_ADDRESS'],
-		:port => ENV['SMTP_PORT'],
-		:domain => ENV['SMTP_DOMAIN'],
-		:user_name => ENV['SMTP_USERNAME'],
-		:password => ENV['SMTP_PASSWORD'],
-		:authentication => "plain",
-		:enable_starttls_auto => true }
-
+  	config.action_mailer.delivery_method = :smtp
+	config.action_mailer.smtp_settings = {
+     		:address => ENV['SMTP_ADDRESS'],
+     		:port => ENV['SMTP_PORT'],
+     		:domain => ENV['SMTP_DOMAIN'],
+     		:user_name => ENV['SMTP_USERNAME'],
+     		:password => ENV['SMTP_PASSWORD'],
+     		:authentication => 'plain',
+     		:enable_starttls_auto => true  }
+     		
 	config.action_mailer.perform_deliveries = true
 	config.action_mailer.raise_delivery_errors = true
 
